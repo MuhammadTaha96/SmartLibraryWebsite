@@ -4,69 +4,70 @@
     ViewBag.Title = "BookDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string reservationMessage = ViewData["resMessage"] != null ? ViewData["resMessage"].ToString() : string.Empty;
-    string resMsgClass = bool.Parse(ViewData["reserved"] != null ? ViewData["reserved"].ToString() : "false") ? "success" : "error"; 
+    string resMsgClass = bool.Parse(ViewData["reserved"] != null ? ViewData["reserved"].ToString() : "false") ? "success" : "error";
 }
 <link href="~/Content/css/bookdetail.css" rel="stylesheet" />
 <style>
     .bookCover {
         max-width: 217px;
-    max-height: 346px;
-    float:left;
-    margin: 45px;
+        max-height: 346px;
+        float: left;
+        margin: 45px;
     }
+
     .navbar-nav {
-        margin-top:10px;
+        margin-top: 10px;
     }
 </style>
 <article>
     <div class="single-book-box">
         <div class="post-thumbnail">
-           <img alt="Book" src="@Model.ImagePath" />
+            <img alt="Book" src="@Model.ImagePath" />
         </div>
         <div class="post-detail">
             @*<div class="books-social-sharing">
-                <ul>
-                    <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-rss"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>*@
+                    <ul>
+                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>*@
             @*<div class="optional-links">
-                <ul>
-                    <li>
-                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Add TO CART">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Like">
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Mail">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Search">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Print">
-                            <i class="fa fa-print"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>*@
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Add TO CART">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Like">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Mail">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Search">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Print">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>*@
             <header class="entry-header">
                 <div class="row">
                     <div class="col-sm-6">
                         <h3 class="entry-title">
-                            <a href="books-media-detail-v1.html"> @Model.Title</a>  
+                            @Model.Title
                         </h3>
                         <ul>
                             <li><strong>Author:</strong> @Model.Author.Name</li>
@@ -76,7 +77,7 @@
                     <div class="col-sm-6">
                         <ul>
                             <li><strong>Edition:</strong> First edition</li>
-                            <li><strong>Local Availability:</strong> @Model.Copies.Where(x=>x.Status.Name == "Available").Count() (of @Model.Copies.Count())</li>
+                            <li><strong>Local Availability:</strong> @Model.Copies.Where(x => x.Status.Name == "Available").Count() (of @Model.Copies.Count())</li>
                             <li>
                                 <div class="rating">
                                     <strong>Rating: </strong>
@@ -95,7 +96,7 @@
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
             </div>
             <footer class="entry-footer">
-                @Html.ActionLink("Reserve", "Reserve",  new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id= "btnReserve" })
+                @Html.ActionLink("Reserve", "Reserve", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
                 <span id="resMessage" class="@resMsgClass">@reservationMessage</span>
             </footer>
         </div>
@@ -113,7 +114,7 @@
             $('#btnReserve').attr('disabled', 'disabled');
             debugger;
             if("@resMsgClass" != "success" )
-               $('#btnReserve').text('No copies available right now');
+                $('#btnReserve').text('No copies available right now');
         }
     })
 </script>
