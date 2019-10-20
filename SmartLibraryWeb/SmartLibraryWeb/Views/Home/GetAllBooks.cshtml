@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.BookViewModel>
+
+@{
+    ViewBag.Title = "GetAllBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #txtBoxSearch, #btnSearch, #SearchByDropdown {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    #NotFoundDiv {
+        display: none;
+        text-align: center;
+    }
+</style>
+<div id="FilterDiv">
+    <span>
+        <input type="text" id="txtBoxSearch" class="form-control" />
+        <input type="button" id="btnSearch" class="btn btn-primary" value="Search" onclick="SearchBook()" />
+
+    </span>
+
+</div>
+
+<table class="table" id="BookListTable">
+    <tr>
+        <th>
+            Book Id
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Language
+        </th>
+        <th>
+            Author
+        </th>
+
+        <th>
+            Category
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookId)
+            </td>
+            <td id="td-Title">
+                @Html.ActionLink(item.Title, "BookDetails", new { id = item.BookId }, new { @class = "bookTitle", title = item.Title.ToLower() })
+            </td>
+            <td id="td-Language" language="@item.Language.ToLower()">
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td id="td-Author" author="@item.Author.Name.ToLower()">
+                @Html.DisplayFor(modelItem => item.Author.Name)
+            </td>
+            <td id="td-Category" category="@item.Category.Name.ToLower()">
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="NotFoundDiv">
+    <img src="~/Content/images/NoRecordFound.png" />
+</div>
