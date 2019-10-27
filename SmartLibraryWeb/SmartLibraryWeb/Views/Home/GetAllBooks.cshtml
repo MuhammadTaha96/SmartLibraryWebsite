@@ -27,9 +27,6 @@
 <table class="table" id="BookListTable">
     <tr>
         <th>
-            Book Id
-        </th>
-        <th>
             Title
         </th>
         <th>
@@ -44,9 +41,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookId)
-            </td>
             <td id="td-Title">
                 @Html.ActionLink(item.Title, "BookDetails", new { id = item.BookId }, new { @class = "bookTitle", title = item.Title.ToLower() })
             </td>
