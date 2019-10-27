@@ -26,5 +26,6 @@ namespace SmartLibraryWeb.ViewModel
         public string UserTypeName { get; set; }
         public int UserTypeId { get; set; }
         public UserType UserType { get; set; }
+        public string ValidationErrorMessage { get; set; }
     }
 }

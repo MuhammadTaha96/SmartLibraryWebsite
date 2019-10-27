@@ -43,6 +43,34 @@ namespace SmartLibraryWeb.Operations
             return userVM;
         }
 
+        public static UserLoginViewModel ValidateUserLogin(string username, string password)
+        {
+            UserLoginViewModel userVM = new UserLoginViewModel();
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "ValidateUserLogin";
+            bool valid = false;
+            string html = string.Empty;
+            UserLogin user = null;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?username=" + username + "&password=" + password;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                user = JsonConvert.DeserializeObject<UserLogin>(html);
+            }
+
+            userVM = Parser.UserParser(user);
+
+            return userVM;
+        }
+
         public static bool ChangePassword(string username, string password)
         {
             string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();

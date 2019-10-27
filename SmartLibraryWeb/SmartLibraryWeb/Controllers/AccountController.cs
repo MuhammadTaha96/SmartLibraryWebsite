@@ -19,15 +19,15 @@ namespace SmartLibraryWeb.Controllers
         [HttpPost]
         public ActionResult Login(UserLoginViewModel user)
         {
-            UserLoginViewModel userLogin = WebApiClient.ValidateUser(user.UserName, user.Password);
-            if (userLogin != null)
+            UserLoginViewModel userLogin = WebApiClient.ValidateUserLogin(user.UserName, user.Password);
+            if (string.IsNullOrEmpty(userLogin.ValidationErrorMessage))
             {
                 Session["UserModel"] = userLogin;
                 return RedirectToAction("Index","Home");
             }
             else
             {
-                ViewData["LoginFailureMessage"] = "Username or Password are incorrect";
+                ViewData["LoginFailureMessage"] = userLogin.ValidationErrorMessage;
             }
 
             return View();

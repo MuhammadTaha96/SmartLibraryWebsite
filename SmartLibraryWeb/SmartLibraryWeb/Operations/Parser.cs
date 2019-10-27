@@ -30,6 +30,26 @@ namespace SmartLibraryWeb.Operations
             return userVM;
         }
 
+        public static UserLoginViewModel UserParser(UserLogin user)
+        {
+            UserLoginViewModel userVM = new UserLoginViewModel();
+            userVM.ValidationErrorMessage = user.ValidationErrorMessage;
+
+            if (string.IsNullOrEmpty(user.ValidationErrorMessage))
+            {
+                userVM.Email = user.Email;
+                userVM.IsActive = user.IsActive;
+                userVM.FullName = user.FullName;
+                userVM.Password = user.Password;
+                userVM.PhoneNumber = user.PhoneNumber;
+                userVM.UserLoginId = user.UserLoginId;
+                userVM.UserName = user.UserName;
+                userVM.UserTypeName = user.UserType.Name;
+                userVM.UserTypeId = user.UserType.UserTypeId;
+            }
+            return userVM;
+        }
+
         public static List<BookViewModel> BooksParser(List<Book> books)
         {
             List<BookViewModel> booksVM = new List<BookViewModel>();
