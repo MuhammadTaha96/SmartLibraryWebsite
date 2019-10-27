@@ -17,10 +17,10 @@ namespace SmartLibraryWeb.ViewModel
         public string ISBN_No { get; set; }
         public string ImagePath { get; set; }
 
-        public AuthorViewModel Author { get; set; }
         public PublisherViewModel Publisher { get; set; }
         public CategoryViewModel Category { get; set; }
 
+        public List<AuthorViewModel> Authors { get; set; }
         public List<ReviewViewModel> Reviews { get; set; }
         public List<CommentViewModel> Comments { get; set; }
         public List<CopyViewModel> Copies { get; set; }

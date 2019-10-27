@@ -204,6 +204,10 @@
     <Content Include="Views\Home\GetAllBooks.cshtml" />
     <Content Include="Views\Home\BookDetails.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Home\CommentsPartialView.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CommentBox.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ReviewBox.cshtml" />
+    <Content Include="Views\Home\ReviewsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -217,7 +221,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Models\BusinessModels.csproj">
+    <ProjectReference Include="..\..\..\API\Models\BusinessModels.csproj">
       <Project>{059bc315-b071-45ee-baf8-2b7d3d609254}</Project>
       <Name>BusinessModels</Name>
     </ProjectReference>

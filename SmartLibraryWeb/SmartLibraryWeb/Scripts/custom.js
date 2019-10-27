@@ -20,3 +20,46 @@ function SearchBook() {
 
     $("#BookListTable tr td a:not([title*=" + "'" + textInput + "'" + "])").parents('tr').hide();
 }
+
+function CallRenderComments(bookId) {
+    $("#loading").show();
+    $('.modal-title').text('Comments');
+    var url = $('#CommentPartialView').val();
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { bookId: bookId },
+        closeBtn: 'true',
+        success: function (data) {
+             $("#loading").hide();
+            $('#modal-data').html(data);
+            //   $('#myModal').modal('show');
+        },
+        error: function (req, status, error) {
+        },
+        complete: function () {
+
+        },
+    });
+}
+function CallRenderReviews(bookId) {
+    $("#loading").show();
+    $('.modal-title').text('Reviews');
+    var url = $('#ReviewPartialView').val();
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { bookId: bookId },
+        closeBtn: 'true',
+        success: function (data) {
+  $("#loading").hide();
+            $('#modal-data').html(data);
+            //   $('#myModal').modal('show');
+        },
+        error: function (req, status, error) {
+        },
+        complete: function () {
+
+        },
+    });
+}

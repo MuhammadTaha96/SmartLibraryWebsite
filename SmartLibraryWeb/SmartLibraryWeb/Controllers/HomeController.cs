@@ -14,7 +14,7 @@ namespace SmartLibraryWeb.Controllers
         {
             if (Session["UserModel"] == null)
                 return RedirectToAction("Login", "Account");
-
+            
             return View();
         }
 
@@ -66,6 +66,29 @@ namespace SmartLibraryWeb.Controllers
             ViewData["reserved"] = reserved; 
             return View("BookDetails", book);
         }
+
+        [HttpPost]
+        public virtual PartialViewResult CommentsPartialView(string bookId)
+        {
+
+            List<CommentViewModel> commentVMList = WebApiClient.GetComments(bookId);
+
+
+            return PartialView(commentVMList);
+
+        }
+
+        [HttpPost]
+        public virtual PartialViewResult ReviewsPartialView(string bookId)
+        {
+
+            List<ReviewViewModel> reviewVMList = WebApiClient.GetReviews(bookId);
+
+
+            return PartialView(reviewVMList);
+
+        }
+      
 
     }
 }

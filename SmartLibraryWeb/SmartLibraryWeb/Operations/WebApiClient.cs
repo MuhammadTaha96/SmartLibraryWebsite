@@ -143,5 +143,53 @@ namespace SmartLibraryWeb.Operations
 
             return success;
         }
+
+        public static List<CommentViewModel> GetComments(string bookId)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetComments";
+            bool success = false;
+            string html = string.Empty;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + bookId;
+            List<Comment> comments = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                comments = JsonConvert.DeserializeObject<List<Comment>>(html);
+            }
+
+            return Parser.CommentParser(comments);
+        }
+
+        public static List<ReviewViewModel> GetReviews(string bookId)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetReviews";
+            bool success = false;
+            string html = string.Empty;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + bookId;
+            List<Review> reviews = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                reviews = JsonConvert.DeserializeObject<List<Review>>(html);
+            }
+
+            return Parser.ReviewParser(reviews);
+        }
     }
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLibraryWeb", "SmartLibraryWeb\SmartLibraryWeb.csproj", "{3200B2A9-8264-41C4-9A38-1E9AA5F79746}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessModels", "..\Models\BusinessModels.csproj", "{059BC315-B071-45EE-BAF8-2B7D3D609254}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessModels", "..\..\API\Models\BusinessModels.csproj", "{059BC315-B071-45EE-BAF8-2B7D3D609254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

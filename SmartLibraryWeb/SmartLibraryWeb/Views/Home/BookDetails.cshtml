@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string reservationMessage = ViewData["resMessage"] != null ? ViewData["resMessage"].ToString() : string.Empty;
     string resMsgClass = bool.Parse(ViewData["reserved"] != null ? ViewData["reserved"].ToString() : "false") ? "success" : "error";
+
+    string Authors = string.Empty;
+
+    foreach (var author in Model.Authors)
+    {
+        Authors += author.Name + ",";
+    }
+
+    Authors = Authors.TrimEnd(',');    
+    
 }
 <link href="~/Content/css/bookdetail.css" rel="stylesheet" />
 <style>
@@ -70,7 +80,7 @@
                             @Model.Title
                         </h3>
                         <ul>
-                            <li><strong>Author:</strong> @Model.Author.Name</li>
+                            <li><strong>Author(s):</strong> @Authors</li>
                             <li><strong>ISBN:</strong> @Model.ISBN_No</li>
                         </ul>
                     </div>
@@ -98,6 +108,9 @@
             <footer class="entry-footer">
                 @Html.ActionLink("Reserve", "Reserve", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
                 <span id="resMessage" class="@resMsgClass">@reservationMessage</span>
+                <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderComments(@Model.BookId)">Comments</a>
+                <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderReviews(@Model.BookId)">Reviews</a>
+              
             </footer>
         </div>
         <div class="clear"></div>
@@ -107,6 +120,29 @@
 <p>
     @Html.ActionLink("Back to List", "GetAllBooks")
 </p>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal-data">
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         if (@Model.Copies.Where(x=>x.Status.StatusId == 1).Count() == 0)

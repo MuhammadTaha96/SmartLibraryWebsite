@@ -1,0 +1,18 @@
+﻿@model SmartLibraryWeb.ViewModel.CommentViewModel
+@{
+    string NAME = string.Empty;
+}
+
+<div class="row">
+    <div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>@Model.Commenter.FullName</strong> <span class="text-muted">commented 5 days ago</span>
+            </div>
+            <div class="panel-body">
+               @Model.Content
+            </div><!-- /panel-body -->
+        </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+
+</div>

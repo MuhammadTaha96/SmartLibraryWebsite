@@ -38,7 +38,7 @@ namespace SmartLibraryWeb.Operations
             foreach (var book in books)
             {
                 BookViewModel bookVM = new BookViewModel();
-                bookVM.Author = new AuthorViewModel();
+                bookVM.Authors = new List<AuthorViewModel>();
                 bookVM.Publisher = new PublisherViewModel();
                 bookVM.Category = new CategoryViewModel();
                 bookVM.Copies = new List<CopyViewModel>();
@@ -51,10 +51,20 @@ namespace SmartLibraryWeb.Operations
                 bookVM.ISBN_No = book.ISBN_No;
                 bookVM.IsDeleted = book.IsDeleted;
                 bookVM.PublishedYear = book.PublishedYear;
+ 
+                foreach (var author in book.Authors)
+                {
+                    AuthorViewModel authorVM = new AuthorViewModel();
+                    authorVM.AuthorId = author.AuthorId;
+                    authorVM.Name = author.Name;
+                    authorVM.Description = author.Description;
 
-                bookVM.Author.AuthorId = book.Author.AuthorId;
-                bookVM.Author.Name = book.Author.Name;
-                bookVM.Author.Description = book.Author.Description;
+                    bookVM.Authors.Add(authorVM);
+                }
+
+                //bookVM.Author.AuthorId = book.Author.AuthorId;
+                //bookVM.Author.Name = book.Author.Name;
+                //bookVM.Author.Description = book.Author.Description;
 
                 bookVM.Publisher.PublisherId = book.Publisher.PublisherId;
                 bookVM.Publisher.Name = book.Publisher.Name;
@@ -96,6 +106,52 @@ namespace SmartLibraryWeb.Operations
             }
 
             return copyList;
+
+        }
+
+        public static List<CommentViewModel> CommentParser(List<Comment> comments)
+        {
+            List<CommentViewModel> commentList = new List<CommentViewModel>();
+            foreach (var comment in comments)
+            {
+                CommentViewModel commentVM = new CommentViewModel();
+                commentVM.Commenter = new UserLoginViewModel();
+                commentVM.Book = new BookViewModel();
+
+                commentVM.CommentId = comment.CommentId;
+                commentVM.Content = comment.Content;
+                commentVM.Rating = comment.Rating;
+
+                commentVM.Commenter.UserLoginId = comment.Commenter.UserLoginId;
+                commentVM.Commenter.Email = comment.Commenter.Email;
+                commentVM.Commenter.FullName = comment.Commenter.FullName;
+                commentVM.Commenter.IsActive = comment.Commenter.IsActive;
+                commentVM.Commenter.PhoneNumber = comment.Commenter.PhoneNumber;
+                commentVM.Commenter.RFID = comment.Commenter.RFID;
+                commentVM.Commenter.UserName = comment.Commenter.UserName;
+
+                commentList.Add(commentVM);
+            }
+
+            return commentList;
+
+        }
+
+        public static List<ReviewViewModel> ReviewParser(List<Review> reviews)
+        {
+            List<ReviewViewModel> reviewList = new List<ReviewViewModel>();
+            foreach (var review in reviews)
+            {
+                ReviewViewModel reviewVM = new ReviewViewModel();
+                
+                reviewVM.ReviewId = review.ReviewId;
+                reviewVM.Content = review.Content;
+                reviewVM.Reviewer = review.Reviewer;
+
+                reviewList.Add(reviewVM);
+            }
+
+            return reviewList;
 
         }
 

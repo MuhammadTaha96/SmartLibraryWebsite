@@ -28,6 +28,9 @@
 </head>
 
 <body>
+    <div id="loading" class="loadingDiv" style="display: none;">
+        <img class="loading" alt="Processing ..." src="/Content/DPN/images/animation.gif">
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -76,6 +79,7 @@
     </div>
 
 </body>
-
+@Html.Hidden("CommentPartialView", Url.Action("CommentsPartialView", "Home"))
+@Html.Hidden("ReviewPartialView", Url.Action("ReviewsPartialView", "Home"))
 </html>
 

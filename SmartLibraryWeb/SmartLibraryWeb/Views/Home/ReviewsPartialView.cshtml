@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.ReviewViewModel>
+
+
+
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(model => item, "ReviewBox")
+}
+
+</table>

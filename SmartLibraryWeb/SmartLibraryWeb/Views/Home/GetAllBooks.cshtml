@@ -36,10 +36,6 @@
             Language
         </th>
         <th>
-            Author
-        </th>
-
-        <th>
             Category
         </th>
 
@@ -56,9 +52,6 @@
             </td>
             <td id="td-Language" language="@item.Language.ToLower()">
                 @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td id="td-Author" author="@item.Author.Name.ToLower()">
-                @Html.DisplayFor(modelItem => item.Author.Name)
             </td>
             <td id="td-Category" category="@item.Category.Name.ToLower()">
                 @Html.DisplayFor(modelItem => item.Category.Name)

@@ -13,7 +13,7 @@
  * Bootstrap v3.0.0
  *
  * Copyright 2013 Twitter, Inc
- * Licensed under the Apache License v2.0
+ * Licensed under the Apache License v20.
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world by @mdo and @fat.
@@ -5740,9 +5740,8 @@ body.modal-open,
 
 @media screen and (min-width: 768px) {
   .modal-dialog {
-    right: auto;
-    left: 50%;
-    width: 600px;
+    margin:auto;
+      width: 600px;
     padding-top: 30px;
     padding-bottom: 30px;
   }

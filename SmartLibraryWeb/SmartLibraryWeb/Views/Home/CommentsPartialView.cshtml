@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.CommentViewModel>
+
+
+
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(model => item,"CommentBox")
+}
+
+</table>
