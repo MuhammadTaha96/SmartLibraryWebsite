@@ -28,8 +28,9 @@
 </head>
 
 <body>
+    @Html.Hidden("LoginUser", null, new { userLoginId = user.UserLoginId.ToString() })
     <div id="loading" class="loadingDiv" style="display: none;">
-        <img class="loading" alt="Processing ..." src="/Content/DPN/images/animation.gif">
+        <img class="loading" alt="Processing ..." src="/Content/images/loading.gif">
     </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -81,5 +82,6 @@
 </body>
 @Html.Hidden("CommentPartialView", Url.Action("CommentsPartialView", "Home"))
 @Html.Hidden("ReviewPartialView", Url.Action("ReviewsPartialView", "Home"))
+@Html.Hidden("AddCommentUrl", Url.Action("AddComment", "Home"))
 </html>
 

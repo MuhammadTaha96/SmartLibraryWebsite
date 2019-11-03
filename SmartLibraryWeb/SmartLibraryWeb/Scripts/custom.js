@@ -22,6 +22,7 @@ function SearchBook() {
 }
 
 function CallRenderComments(bookId) {
+    debugger;
     $("#loading").show();
     $('.modal-title').text('Comments');
     var url = $('#CommentPartialView').val();
@@ -54,6 +55,35 @@ function CallRenderReviews(bookId) {
         success: function (data) {
   $("#loading").hide();
             $('#modal-data').html(data);
+            //   $('#myModal').modal('show');
+        },
+        error: function (req, status, error) {
+        },
+        complete: function () {
+
+        },
+    });
+}
+
+
+function AddComment() {
+    debugger;
+    $('.modal-title').text('Comments');
+    $("#loading").show();
+
+    var bookId = $('#BookId').val();
+    var commentText = $('#textarea-comment').val();
+    var userLoginId = $('#LoginUser').attr('userloginid');
+    var url = $('#AddCommentUrl').val();
+   
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { bookId: bookId, commentText: commentText, userLoginId: userLoginId },
+        closeBtn: 'true',
+        success: function (data) {
+            CallRenderComments(bookId);
+            $("#loading").hide();
             //   $('#myModal').modal('show');
         },
         error: function (req, status, error) {

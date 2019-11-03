@@ -14,7 +14,7 @@ namespace SmartLibraryWeb.Controllers
         {
             if (Session["UserModel"] == null)
                 return RedirectToAction("Login", "Account");
-            
+
             return View();
         }
 
@@ -45,7 +45,7 @@ namespace SmartLibraryWeb.Controllers
             return View(bookList);
         }
 
-   
+
         public ActionResult BookDetails(int id)
         {
             if (Session["UserModel"] == null)
@@ -63,7 +63,7 @@ namespace SmartLibraryWeb.Controllers
             bool reserved = WebApiClient.ReserveACopy(bookId, userLogin.UserLoginId);
             BookViewModel book = WebApiClient.GetAllBooks().Where(x => x.BookId == bookId).SingleOrDefault();
             ViewData["resMessage"] = reserved ? "Your book has been reserved" : "An Error Occured";
-            ViewData["reserved"] = reserved; 
+            ViewData["reserved"] = reserved;
             return View("BookDetails", book);
         }
 
@@ -75,7 +75,6 @@ namespace SmartLibraryWeb.Controllers
 
 
             return PartialView(commentVMList);
-
         }
 
         [HttpPost]
@@ -86,9 +85,14 @@ namespace SmartLibraryWeb.Controllers
 
 
             return PartialView(reviewVMList);
-
         }
-      
 
+        [HttpPost]
+        public virtual ActionResult AddComment(string bookId, string commentText, string userLoginId)
+        {
+            bool success = WebApiClient.AddComment(bookId, commentText, userLoginId);
+
+            return Json(new { success = success });
+        }
     }
 }

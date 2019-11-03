@@ -141,6 +141,7 @@ namespace SmartLibraryWeb.Operations
                 commentVM.CommentId = comment.CommentId;
                 commentVM.Content = comment.Content;
                 commentVM.Rating = comment.Rating;
+                commentVM.Date = comment.Date;
 
                 commentVM.Commenter.UserLoginId = comment.Commenter.UserLoginId;
                 commentVM.Commenter.Email = comment.Commenter.Email;
@@ -149,7 +150,7 @@ namespace SmartLibraryWeb.Operations
                 commentVM.Commenter.PhoneNumber = comment.Commenter.PhoneNumber;
                 commentVM.Commenter.RFID = comment.Commenter.RFID;
                 commentVM.Commenter.UserName = comment.Commenter.UserName;
-
+             
                 commentList.Add(commentVM);
             }
 

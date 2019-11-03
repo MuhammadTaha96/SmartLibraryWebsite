@@ -1,11 +1,27 @@
 ﻿@model IEnumerable<SmartLibraryWeb.ViewModel.CommentViewModel>
 
-
-
-
+ @{
+     UserLoginViewModel user = Session["UserModel"] as UserLoginViewModel;
+     CommentViewModel comment = new CommentViewModel();
+}
 @foreach (var item in Model)
 {
     @Html.DisplayFor(model => item,"CommentBox")
 }
+
+<div class="row">
+    <div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>@user.FullName </strong> <span class="text-muted"> @DateTime.Now </span>
+            </div>
+        <div class="panel-body">
+            <textarea class="form-control" style="resize: none;" id="textarea-comment"></textarea>    
+            <button type="button" id="btnAddComment" class="btn btn-default" onclick="AddComment()">Comment</button>
+            </div><!-- /panel-body -->
+        </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+
+</div>
 
 </table>

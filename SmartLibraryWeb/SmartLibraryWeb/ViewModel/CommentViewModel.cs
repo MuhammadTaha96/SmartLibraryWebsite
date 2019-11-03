@@ -12,5 +12,6 @@ namespace SmartLibraryWeb.ViewModel
         public int Rating { get; set; }
         public UserLoginViewModel Commenter { get; set; }
         public BookViewModel Book { get; set; }
+        public DateTime Date { get; set; }
     }
 }

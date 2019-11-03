@@ -219,5 +219,30 @@ namespace SmartLibraryWeb.Operations
 
             return Parser.ReviewParser(reviews);
         }
+
+        public static bool AddComment(string bookId, string commentText, string userLoginId)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "AddComment";
+            bool success = false;
+            string html = string.Empty;
+            
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + int.Parse(bookId) + "&commentText=" + commentText + "&userLoginId=" + int.Parse(userLoginId);
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                success = bool.Parse(html);
+            }
+
+            return success;
+        }
     }
 }

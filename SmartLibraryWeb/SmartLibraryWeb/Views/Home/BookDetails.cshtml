@@ -16,6 +16,9 @@
     Authors = Authors.TrimEnd(',');    
     
 }
+
+@Html.HiddenFor(x => x.BookId)
+
 <link href="~/Content/css/bookdetail.css" rel="stylesheet" />
 <style>
     .bookCover {
@@ -32,7 +35,7 @@
 <article>
     <div class="single-book-box">
         <div class="post-thumbnail">
-            <img alt="Book" src="@Model.ImagePath" />
+            <img alt="Book"  src="@Model.ImagePath" />
         </div>
         <div class="post-detail">
             @*<div class="books-social-sharing">
