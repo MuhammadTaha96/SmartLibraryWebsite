@@ -9,6 +9,7 @@ namespace SmartLibraryWeb.ViewModel
     {
         public int LocationId { get; set; }
         public int Shelf { get; set; }
-        public int ShelfLine { get; set; }
+        public int ShelfRow { get; set; }
+        public int ShelfCol { get; set; }
     }
 }

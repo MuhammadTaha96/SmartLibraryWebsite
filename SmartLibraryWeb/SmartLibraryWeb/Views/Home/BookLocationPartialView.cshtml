@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.CopyViewModel>
+
+<div class="shelve">
+    <div>
+        <div id="shelveHeader"></div>
+    </div>
+    <div class="row shelveLine">
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+    </div>
+    <div class="row shelveLine">
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+    </div>
+    <div class="row shelveLine">
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+    </div>
+    <div class="row shelveLine">
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+        <div class="bookPlacement"></div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        @foreach (var copy in Model)
+        {
+            <text>
+        debugger;
+        var shelfRow = 1 + @copy.Location.ShelfRow;
+        var shelfCol = @copy.Location.ShelfCol;
+        $('.shelve .shelveLine:nth-child('+ shelfRow + ') div.bookPlacement:nth-child(' + shelfCol + ')').addClass('glow'); //.css('background-color','red');
+        $('#shelveHeader').text('Shelf # ' + @copy.Location.Shelf);
+        </text>
+        }
+
+    })
+
+</script>

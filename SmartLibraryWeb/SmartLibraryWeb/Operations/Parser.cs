@@ -119,7 +119,8 @@ namespace SmartLibraryWeb.Operations
                 copyVM.Status.Name = copy.Status.Name;
                 copyVM.Location.LocationId = copy.Location.LocationId;
                 copyVM.Location.Shelf = copy.Location.Shelf;
-                copyVM.Location.ShelfLine = copy.Location.ShelfLine;
+                copyVM.Location.ShelfRow = copy.Location.ShelfRow;
+                copyVM.Location.ShelfCol = copy.Location.ShelfCol;
                 copyVM.Book.BookId = copy.Book.BookId;
 
                 copyList.Add(copyVM);

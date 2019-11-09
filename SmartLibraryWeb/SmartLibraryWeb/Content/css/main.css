@@ -590,3 +590,46 @@ img.loading {
 #btnAddComment {
     margin: 5px 0 0 0;
 }
+
+/*Book Location CSS - Start*/
+  .bookPlacement {
+        width: 22px;
+        height: 100px;
+        border: 2px solid black;
+        margin: 4px;
+        display: inline-block;
+        background-color: sandybrown;
+    box-shadow: 4px 0px #cf734e;
+}
+
+.shelve {
+        width: 500px;
+        margin: auto;
+    }
+
+   #shelveHeader {
+        text-align: center;
+        font-size: 20px;
+    }
+
+.glow {
+
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+
+@-webkit-keyframes glow {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 10px #e60073, 0 0 10px #60c418, 0 0 10px #60c418, 0 0 20px #60c418, 0 0 10px #60c418;
+  }
+  
+  to {
+    box-shadow: 0 0 20px #fff, 0 0 10px #59ff00, 0 0 20px #59ff00, 0 0 20px #59ff00, 0 0 20px #59ff00, 0 0 40px #59ff00, 0 0 20px #59ff00;
+  }
+}
+
+/*Book Location CSS - End*/

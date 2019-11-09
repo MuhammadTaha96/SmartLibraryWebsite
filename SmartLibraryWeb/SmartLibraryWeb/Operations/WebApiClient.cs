@@ -244,5 +244,32 @@ namespace SmartLibraryWeb.Operations
 
             return success;
         }
+
+        //Getting location of all available copies by bookId
+        public static List<CopyViewModel> GetAvailableCopies(int bookId)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetAvailableCopies";
+            string html = string.Empty;
+            List<Copy> copies = null;
+            List<CopyViewModel> copiesVM = null;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + bookId;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                copies = JsonConvert.DeserializeObject<List<Copy>>(html);
+            }
+
+            copiesVM = Parser.CopiesParser(copies);
+            return copiesVM;
+        }
     }
 }

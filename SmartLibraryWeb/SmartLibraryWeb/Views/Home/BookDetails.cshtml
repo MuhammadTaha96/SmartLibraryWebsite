@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string reservationMessage = ViewData["resMessage"] != null ? ViewData["resMessage"].ToString() : string.Empty;
     string resMsgClass = bool.Parse(ViewData["reserved"] != null ? ViewData["reserved"].ToString() : "false") ? "success" : "error";
-
     string Authors = string.Empty;
 
     foreach (var author in Model.Authors)
@@ -113,7 +112,8 @@
                 <span id="resMessage" class="@resMsgClass">@reservationMessage</span>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderComments(@Model.BookId)">Comments</a>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderReviews(@Model.BookId)">Reviews</a>
-              
+                <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="ShowBookLocation(@Model.BookId)">Location</a>
+
             </footer>
         </div>
         <div class="clear"></div>

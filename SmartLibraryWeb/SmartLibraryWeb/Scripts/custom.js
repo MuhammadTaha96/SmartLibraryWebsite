@@ -65,6 +65,28 @@ function CallRenderReviews(bookId) {
     });
 }
 
+function ShowBookLocation(bookId) {
+    debugger;
+    $("#loading").show();
+    $('.modal-title').text('Book Location');
+    var url = $('#BookLocationPartialView').val();
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { bookId: bookId },
+        closeBtn: 'true',
+        success: function (data) {
+            $("#loading").hide();
+            $('#modal-data').html(data);
+            //   $('#myModal').modal('show');
+        },
+        error: function (req, status, error) {
+        },
+        complete: function () {
+
+        },
+    });
+}
 
 function AddComment() {
     debugger;

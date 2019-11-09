@@ -94,5 +94,12 @@ namespace SmartLibraryWeb.Controllers
 
             return Json(new { success = success });
         }
+
+        [HttpPost]
+        public virtual PartialViewResult BookLocationPartialView(int bookId)
+        {
+            List<CopyViewModel> commentVMList = WebApiClient.GetAvailableCopies(bookId);
+            return PartialView(commentVMList);
+        }
     }
 }
