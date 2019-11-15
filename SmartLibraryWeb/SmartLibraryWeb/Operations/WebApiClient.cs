@@ -105,7 +105,7 @@ namespace SmartLibraryWeb.Operations
             bool valid = false;
             string html = string.Empty;
             List<Book> books = null;
-
+           
             string url = urlWebConfig + "/" + controller + "/" + action;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -120,6 +120,32 @@ namespace SmartLibraryWeb.Operations
             }
 
             return Parser.BooksParser(books);
+        }
+
+        public static BookViewModel GetBookDetails(int bookId)
+        {
+            List<BookViewModel> bookVM = new List<BookViewModel>();
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetBookDetails";
+            bool valid = false;
+            string html = string.Empty;
+            Book book = null;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + bookId;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                book = JsonConvert.DeserializeObject<Book>(html);
+            }
+
+            return Parser.BooksDetailsParser(book);
         }
 
         public static List<CopyViewModel> GetAllCopies()

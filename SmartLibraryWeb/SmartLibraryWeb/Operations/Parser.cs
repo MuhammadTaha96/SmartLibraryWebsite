@@ -103,6 +103,50 @@ namespace SmartLibraryWeb.Operations
 
         }
 
+        public static BookViewModel BooksDetailsParser(Book book)
+        {
+            BookViewModel bookVM = new BookViewModel();
+            List<CopyViewModel> copiesVM = WebApiClient.GetAllCopies();
+
+                bookVM.Authors = new List<AuthorViewModel>();
+                bookVM.Publisher = new PublisherViewModel();
+                bookVM.Category = new CategoryViewModel();
+                bookVM.Copies = new List<CopyViewModel>();
+
+                bookVM.BookId = book.BookId;
+                bookVM.Title = book.Title;
+                bookVM.Description = book.Description;
+                bookVM.IsAvailable = book.IsAvailable;
+                bookVM.Language = book.Language;
+                bookVM.ISBN_No = book.ISBN_No;
+                bookVM.IsDeleted = book.IsDeleted;
+                bookVM.PublishedYear = book.PublishedYear;
+
+                foreach (var author in book.Authors)
+                {
+                    AuthorViewModel authorVM = new AuthorViewModel();
+                    authorVM.AuthorId = author.AuthorId;
+                    authorVM.Name = author.Name;
+                    authorVM.Description = author.Description;
+
+                    bookVM.Authors.Add(authorVM);
+                }
+
+             
+                bookVM.Publisher.PublisherId = book.Publisher.PublisherId;
+                bookVM.Publisher.Name = book.Publisher.Name;
+                bookVM.Publisher.Description = book.Publisher.Description;
+
+                bookVM.Category.CategoryId = book.Category.CategoryId;
+                bookVM.Category.Name = book.Category.Name;
+                bookVM.Category.Description = book.Category.Description;
+                bookVM.ImagePath = book.ImagePath;
+                bookVM.Copies = copiesVM.Where(x => x.Book.BookId == book.BookId).ToList();
+
+            return bookVM;
+
+        }
+
         public static List<CopyViewModel> CopiesParser(List<Copy> copies)
         {
             List<CopyViewModel> copyList = new List<CopyViewModel>();

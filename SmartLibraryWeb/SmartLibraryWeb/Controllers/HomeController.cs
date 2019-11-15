@@ -51,8 +51,7 @@ namespace SmartLibraryWeb.Controllers
             if (Session["UserModel"] == null)
                 return RedirectToAction("Login", "Account");
 
-            List<BookViewModel> bookList = Session["BookList"] as List<BookViewModel>;
-            BookViewModel bookVM = bookList.Where(x => x.BookId == id).SingleOrDefault();
+            BookViewModel bookVM = WebApiClient.GetBookDetails(id);
             return View(bookVM);
         }
 

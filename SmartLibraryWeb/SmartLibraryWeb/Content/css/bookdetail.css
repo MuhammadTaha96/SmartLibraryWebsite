@@ -16120,7 +16120,8 @@ a:focus {
   }
 }
 .single-book-box img {
-  width: 80%;
+    width: 262px;
+    height: 394px;
 }
 .single-book-box .books-social-sharing {
   background-color: #fff;

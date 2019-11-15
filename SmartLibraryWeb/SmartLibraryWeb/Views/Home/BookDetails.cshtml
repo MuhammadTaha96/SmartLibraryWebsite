@@ -91,21 +91,21 @@
                             <li><strong>Edition:</strong> First edition</li>
                             <li><strong>Local Availability:</strong> @Model.Copies.Where(x => x.Status.Name == "Available").Count() (of @Model.Copies.Count())</li>
                             <li>
-                                <div class="rating">
+                                @*<div class="rating">
                                     <strong>Rating: </strong>
                                     <span>☆</span>
                                     <span>☆</span>
                                     <span>☆</span>
                                     <span>☆</span>
                                     <span>☆</span>
-                                </div>
+                                </div>*@
                             </li>
                         </ul>
                     </div>
                 </div>
             </header>
             <div class="entry-content">
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                <p>@Model.Description</p>
             </div>
             <footer class="entry-footer">
                 @Html.ActionLink("Reserve", "Reserve", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
