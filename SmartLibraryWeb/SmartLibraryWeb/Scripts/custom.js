@@ -32,7 +32,7 @@ function CallRenderComments(bookId) {
         data: { bookId: bookId },
         closeBtn: 'true',
         success: function (data) {
-             $("#loading").hide();
+            $("#loading").hide();
             $('#modal-data').html(data);
             //   $('#myModal').modal('show');
         },
@@ -53,7 +53,7 @@ function CallRenderReviews(bookId) {
         data: { bookId: bookId },
         closeBtn: 'true',
         success: function (data) {
-  $("#loading").hide();
+            $("#loading").hide();
             $('#modal-data').html(data);
             //   $('#myModal').modal('show');
         },
@@ -90,6 +90,12 @@ function ShowBookLocation(bookId) {
 
 function AddComment() {
     debugger;
+    var commentText = $('#textarea-comment').val();
+    if (commentText.trim() == "") {
+        $('#commentBoxError').show();
+        return;
+    }
+    $('#commentBoxError').hide();
     $('.modal-title').text('Comments');
     $("#loading").show();
 
@@ -97,7 +103,7 @@ function AddComment() {
     var commentText = $('#textarea-comment').val();
     var userLoginId = $('#LoginUser').attr('userloginid');
     var url = $('#AddCommentUrl').val();
-   
+
     $.ajax({
         url: url,
         type: 'POST',
