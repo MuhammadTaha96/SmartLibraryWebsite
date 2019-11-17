@@ -166,7 +166,7 @@ namespace SmartLibraryWeb.Operations
                 copyVM.Location.ShelfRow = copy.Location.ShelfRow;
                 copyVM.Location.ShelfCol = copy.Location.ShelfCol;
                 copyVM.Book.BookId = copy.Book.BookId;
-
+                copyVM.Book.ImagePath = copy.Book.ImagePath;
                 copyList.Add(copyVM);
             }
 
