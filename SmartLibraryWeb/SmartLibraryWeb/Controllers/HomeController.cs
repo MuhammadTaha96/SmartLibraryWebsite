@@ -1,4 +1,5 @@
-﻿using SmartLibraryWeb.Operations;
+﻿using Newtonsoft.Json;
+using SmartLibraryWeb.Operations;
 using SmartLibraryWeb.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,26 @@ namespace SmartLibraryWeb.Controllers
                 return RedirectToAction("Login", "Account");
 
             List<BookViewModel> bookList = new List<BookViewModel>();
-            bookList = WebApiClient.GetAllBooks();
-
-            Session["BookList"] = bookList;
-
+            
             return View(bookList);
         }
+
+        [HttpPost]
+        public ActionResult GetBookJsonResponse()
+        {
+            if (Session["UserModel"] == null)
+                return RedirectToAction("Login", "Account");
+
+            List<BookViewModel> bookList = new List<BookViewModel>();
+            bookList = WebApiClient.GetAllBooks();
+            Session["BookList"] = bookList;
+
+            string json = JsonConvert.SerializeObject(bookList);
+
+            
+            return Content(json);
+        }
+
 
 
         public ActionResult BookDetails(int id)

@@ -15,46 +15,120 @@
         text-align: center;
     }
 </style>
-<div id="FilterDiv">
+@*<div id="FilterDiv">
     <span>
         <input type="text" id="txtBoxSearch" class="form-control" />
         <input type="button" id="btnSearch" class="btn btn-primary" value="Search" onclick="SearchBook()" />
 
     </span>
 
-</div>
+</div>*@
 
 <table class="table" id="BookListTable">
-    <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Language
-        </th>
-        <th>
-            Category
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td id="td-Title">
-                @Html.ActionLink(item.Title, "BookDetails", new { id = item.BookId }, new { @class = "bookTitle", title = item.Title.ToLower() })
-            </td>
-            <td id="td-Language" language="@item.Language.ToLower()">
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td id="td-Category" category="@item.Category.Name.ToLower()">
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-        </tr>
-    }
-
+     <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Language</th>
+                        <th>Category</th>
+                        <th>ISBN</th>
+                        <th>Publish Year</th>
+                    </tr>
+                </thead>
 </table>
 
 <div id="NotFoundDiv">
     <img src="~/Content/images/NoRecordFound.png" />
 </div>
+<script>
+
+    $(document).load(function () {
+        //Adding style dyanamically to search textbox
+        $("input[type='search']").addClass('form-control');
+    });
+
+    $(document).ready(function () {
+
+
+        LoadBooks();
+    });
+
+    function LoadBooks() {
+        var dateTime;
+        var date;
+        var time;
+
+        $('#loading').show();
+        $.ajax({
+            url: '@Url.Action("GetBookJsonResponse", "Home")',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            datatype: 'json',
+            success: function (returnData) {
+                debugger;
+                if (returnData == null || returnData == "") {
+                    $('#BookListTable').dataTable();
+                    $('#loading').hide();
+                }
+                else if (returnData.responseText == 'sessionout') { window.location.reload(); return; }
+
+                var data = JSON.parse(returnData);
+
+                if (data == null) { $('#BookListTable').dataTable(); }
+
+                $('#BookListTable').dataTable({
+                    language: {
+                        search: "",
+                        searchPlaceholder: "Search"
+                    },
+                    "dom": '<"top"f>t<"row table-pagination-div"<"col-md-3"i><"col-md-4"l>p>',
+                    "autoWidth": false,
+                    responsive: true,
+                    data: data,
+                    rowId: 'BookId',
+                    'order': [[3, "asc"]],
+                    columns: [
+                    {
+                        'data': null,
+                        'orderable': true,
+                        'render': function (data, type, row) {
+                            debugger;
+                           return row.Title;
+                        },
+                        "defaultContent": "<i>Not Available</i>"
+                    },
+                    {
+                        'data': 'Language',
+                        "defaultContent": "<i>Not Available</i>"                       
+                    },
+                    {
+                        'data': 'Category.Name',
+                        "defaultContent": "<i>Not Available</i>",
+                        "searchable": true,
+                        'name': 'colCategory'
+                    },
+                    {
+                        'data': 'ISBN_No',
+                        "defaultContent": "<i>Not Available</i>"
+                    },
+                     {
+                         'data': 'PublishedYear',
+                         "defaultContent": "<i>Not Available</i>"
+                     },
+                    
+                    ],
+                    initComplete: function () {
+                        $("div.dataTables_filter").append($("#customToolbar"));
+                      
+                    }
+                });
+                $('#loading').hide();
+              
+            },
+            error: function () {
+                $('#BookListTable').dataTable();
+                $('#loading').hide();
+            }
+        });
+    }
+
+</script>

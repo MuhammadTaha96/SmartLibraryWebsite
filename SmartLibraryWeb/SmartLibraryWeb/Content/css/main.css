@@ -613,7 +613,6 @@ img.loading {
 }
 
 .glow {
-
     color: black;
     writing-mode: tb;
     text-align: center;
@@ -640,4 +639,17 @@ img.loading {
     left: 36px;
     top: 5px;
     color: red;
+}
+
+input[type="search"] {
+    border: 1px solid black;
+    margin-bottom: 15px;
+    height: 35px;
+    padding: 20px;
+    position: relative;
+    right: 10px;
+}
+
+#BookListTable_length {
+    margin-top: 11px;
 }
