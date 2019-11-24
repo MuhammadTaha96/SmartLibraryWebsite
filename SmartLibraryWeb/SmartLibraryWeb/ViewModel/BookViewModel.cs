@@ -16,6 +16,7 @@ namespace SmartLibraryWeb.ViewModel
         public bool IsDeleted { get; set; }
         public string ISBN_No { get; set; }
         public string ImagePath { get; set; }
+        public string Edition { get; set; }
 
         public PublisherViewModel Publisher { get; set; }
         public CategoryViewModel Category { get; set; }

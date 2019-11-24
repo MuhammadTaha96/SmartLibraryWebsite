@@ -121,6 +121,7 @@ namespace SmartLibraryWeb.Operations
                 bookVM.ISBN_No = book.ISBN_No;
                 bookVM.IsDeleted = book.IsDeleted;
                 bookVM.PublishedYear = book.PublishedYear;
+                bookVM.Edition = book.Edition;
 
                 foreach (var author in book.Authors)
                 {
@@ -136,6 +137,7 @@ namespace SmartLibraryWeb.Operations
                 bookVM.Publisher.PublisherId = book.Publisher.PublisherId;
                 bookVM.Publisher.Name = book.Publisher.Name;
                 bookVM.Publisher.Description = book.Publisher.Description;
+                bookVM.Publisher.Address = book.Publisher.Address;
 
                 bookVM.Category.CategoryId = book.Category.CategoryId;
                 bookVM.Category.Name = book.Category.Name;

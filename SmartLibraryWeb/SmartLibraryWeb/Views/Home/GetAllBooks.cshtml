@@ -15,14 +15,15 @@
         text-align: center;
     }
 </style>
-@*<div id="FilterDiv">
-    <span>
-        <input type="text" id="txtBoxSearch" class="form-control" />
-        <input type="button" id="btnSearch" class="btn btn-primary" value="Search" onclick="SearchBook()" />
+<div id="FilterDiv">
+    <div class="select-category">
+        <select class="form-control" id="ddlCategoryFilter"></select>
+    </div>
+    <div class="select-language">
+        <select class="form-control" id="ddlLanguageFilter"></select>
+    </div>
 
-    </span>
-
-</div>*@
+</div>
 
 <table class="table" id="BookListTable">
      <thead>
@@ -92,13 +93,15 @@
                         'orderable': true,
                         'render': function (data, type, row) {
                             debugger;
-                           return row.Title;
+                            return '<a href="@Url.Action("BookDetails", "Home")?id=' + row.BookId + '">' + row.Title + '</a>';
                         },
                         "defaultContent": "<i>Not Available</i>"
                     },
                     {
                         'data': 'Language',
-                        "defaultContent": "<i>Not Available</i>"                       
+                        "defaultContent": "<i>Not Available</i>",
+                        "searchable": true,
+                        'name': 'colLanguage'
                     },
                     {
                         'data': 'Category.Name',
@@ -114,15 +117,19 @@
                          'data': 'PublishedYear',
                          "defaultContent": "<i>Not Available</i>"
                      },
-                    
+
                     ],
                     initComplete: function () {
                         $("div.dataTables_filter").append($("#customToolbar"));
-                      
+                        $('#FilterDiv').append($('input[type="search"]'));
+                        $('input[type="search"]').css('float', 'right').addClass('form-control');
+                        PopulateCategoryFilter();
+                        PopulateLanguageFilter();
+
                     }
                 });
                 $('#loading').hide();
-              
+
             },
             error: function () {
                 $('#BookListTable').dataTable();

@@ -88,18 +88,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ul>
-                            <li><strong>Edition:</strong> First edition</li>
+                            <li><strong>Edition:</strong> @Model.Edition </li>
                             <li><strong>Local Availability:</strong> @Model.Copies.Where(x => x.Status.Name == "Available").Count() (of @Model.Copies.Count())</li>
-                            <li>
-                                @*<div class="rating">
-                                    <strong>Rating: </strong>
-                                    <span>☆</span>
-                                    <span>☆</span>
-                                    <span>☆</span>
-                                    <span>☆</span>
-                                    <span>☆</span>
-                                </div>*@
-                            </li>
+                            <li><strong>Publisher:</strong> @Model.Publisher.Name (@Model.Publisher.Address)</li>
                         </ul>
                     </div>
                 </div>

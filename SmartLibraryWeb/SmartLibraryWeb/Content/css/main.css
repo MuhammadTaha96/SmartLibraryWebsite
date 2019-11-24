@@ -60,7 +60,7 @@ p {
     font-family: Ubuntu-Regular;
     font-size: 14px;
     line-height: 1.7;
-    color: #666666;
+    color: #FFF;
     margin: 0px;
 }
 
@@ -652,4 +652,8 @@ input[type="search"] {
 
 #BookListTable_length {
     margin-top: 11px;
+}
+
+#FilterDiv div {
+        display: inline-block;
 }

@@ -121,3 +121,51 @@ function AddComment() {
         },
     });
 }
+
+function PopulateCategoryFilter() {
+    var tblBooks = $('#BookListTable').dataTable();
+    tblBooks.api().columns('colCategory:name').every(function () {
+
+        var column = this;
+        var ddlCategoryFilter = $('#ddlCategoryFilter')
+            .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+                column
+                    .search(val ? '^' + val + '$' : '', true, false)
+                    .draw();
+            });
+
+        // Populate Category Filter DDL...
+        ddlCategoryFilter.empty();
+        $(document.createElement('option')).attr('value', '').text('All Categories').appendTo(ddlCategoryFilter);
+        column.data().unique().sort().each(function (d, j) {
+            $(document.createElement('option')).attr('value', d).text(d).appendTo(ddlCategoryFilter);
+        });
+    });
+}
+
+function PopulateLanguageFilter() {
+    var tblBooks = $('#BookListTable').dataTable();
+    tblBooks.api().columns('colLanguage:name').every(function () {
+
+        var column = this;
+        var ddlLanguageFilter = $('#ddlLanguageFilter')
+            .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+                column
+                    .search(val ? '^' + val + '$' : '', true, false)
+                    .draw();
+            });
+
+        // Populate Category Filter DDL...
+        ddlLanguageFilter.empty();
+        $(document.createElement('option')).attr('value', '').text('All Languages').appendTo(ddlLanguageFilter);
+        column.data().unique().sort().each(function (d, j) {
+            $(document.createElement('option')).attr('value', d).text(d).appendTo(ddlLanguageFilter);
+        });
+    });
+}
