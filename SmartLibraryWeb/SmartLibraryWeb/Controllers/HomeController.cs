@@ -76,7 +76,7 @@ namespace SmartLibraryWeb.Controllers
             List<BookViewModel> bookList = Session["BookList"] as List<BookViewModel>;
             bool reserved = WebApiClient.ReserveACopy(bookId, userLogin.UserLoginId);
             BookViewModel book = WebApiClient.GetAllBooks().Where(x => x.BookId == bookId).SingleOrDefault();
-            ViewData["resMessage"] = reserved ? "Your book has been reserved" : "An Error Occured";
+            ViewData["resMessage"] = reserved ? "Your book has been reserved" : "";
             ViewData["reserved"] = reserved;
             return View("BookDetails", book);
         }

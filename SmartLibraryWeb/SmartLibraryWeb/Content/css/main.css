@@ -657,3 +657,7 @@ input[type="search"] {
 #FilterDiv div {
         display: inline-block;
 }
+
+#BookListTable {
+    color:black;
+}
