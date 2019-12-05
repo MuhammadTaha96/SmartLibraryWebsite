@@ -224,6 +224,7 @@
     <Content Include="Views\Shared\DisplayTemplates\ReviewBox.cshtml" />
     <Content Include="Views\Home\ReviewsPartialView.cshtml" />
     <Content Include="Views\Home\BookLocationPartialView.cshtml" />
+    <Content Include="Views\Home\ReservationReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

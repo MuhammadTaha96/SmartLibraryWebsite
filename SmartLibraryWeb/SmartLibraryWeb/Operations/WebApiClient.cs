@@ -174,14 +174,14 @@ namespace SmartLibraryWeb.Operations
             return Parser.CopiesParser(copies);
         }
 
-        public static bool ReserveACopy(int bookId, int userLoginId)
+        public static ReservationViewModel ReserveACopy(int bookId, int userLoginId)
         {
             string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
             string controller = "values";
             string action = "ReserveACopy";
-            bool success = false;
             string html = string.Empty;
-           
+            Reservation reservation = null;
+
             string url = urlWebConfig + "/" + controller + "/" + action + "?bookId=" + bookId + "&userLoginId=" + userLoginId;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -192,10 +192,10 @@ namespace SmartLibraryWeb.Operations
             using (StreamReader reader = new StreamReader(stream))
             {
                 html = reader.ReadToEnd();
-                success = bool.Parse(html);
+                reservation = JsonConvert.DeserializeObject<Reservation>(html);
             }
 
-            return success;
+            return Parser.ReservationParser(reservation);
         }
 
         public static List<CommentViewModel> GetComments(string bookId)

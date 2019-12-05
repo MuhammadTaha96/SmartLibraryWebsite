@@ -205,6 +205,36 @@ namespace SmartLibraryWeb.Operations
 
         }
 
+        public static ReservationViewModel ReservationParser(Reservation reservation)
+        {
+            ReservationViewModel resVM = new ReservationViewModel();
+            resVM.ReservationId = reservation.ReservationId;
+            resVM.StartDateTime = reservation.StartDateTime;
+            resVM.EndDateTime = reservation.EndDateTime;
+            
+            resVM.ReservedBy = new UserLoginViewModel();
+            resVM.ReservedBy.UserLoginId = reservation.ReservedBy.UserLoginId;
+            resVM.ReservedBy.Email = reservation.ReservedBy.Email;
+            resVM.ReservedBy.FullName= reservation.ReservedBy.FullName;
+            resVM.ReservedBy.IsActive= reservation.ReservedBy.IsActive;
+            resVM.ReservedBy.PhoneNumber= reservation.ReservedBy.PhoneNumber;
+            resVM.ReservedBy.RFID= reservation.ReservedBy.RFID;
+            resVM.ReservedBy.UserName = reservation.ReservedBy.UserName;
+
+            resVM.ReservedCopy = new CopyViewModel();
+            resVM.ReservedCopy.CopyId = reservation.ReservedCopy.CopyId;
+            resVM.ReservedCopy.RFID = reservation.ReservedCopy.RFID;
+            
+            resVM.ReservedCopy.Book = new BookViewModel();
+            resVM.ReservedCopy.Book.Title = reservation.ReservedCopy.Book.Title;
+            resVM.ReservedCopy.Book.BookId = reservation.ReservedCopy.Book.BookId;
+            resVM.ReservedCopy.Book.ISBN_No = reservation.ReservedCopy.Book.ISBN_No;
+            resVM.ReservedCopy.Book.Language = reservation.ReservedCopy.Book.Language;
+
+            return resVM;
+
+        }
+
         public static List<ReviewViewModel> ReviewParser(List<Review> reviews)
         {
             List<ReviewViewModel> reviewList = new List<ReviewViewModel>();
