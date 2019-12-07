@@ -132,6 +132,8 @@
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\CommentViewModel.cs" />
     <Compile Include="ViewModel\CopyViewModel.cs" />
+    <Compile Include="ViewModel\ElectronicFileTypeViewModel.cs" />
+    <Compile Include="ViewModel\ElectronicFileViewModel.cs" />
     <Compile Include="ViewModel\LocationViewModel.cs" />
     <Compile Include="ViewModel\PublisherViewModel.cs" />
     <Compile Include="ViewModel\ReservationViewModel.cs" />
@@ -182,6 +184,19 @@
     <Content Include="Content\fonts\Ubuntu-Medium.ttf" />
     <Content Include="Content\fonts\Ubuntu-MediumItalic.ttf" />
     <Content Include="Content\fonts\Ubuntu-Regular.ttf" />
+    <Content Include="Content\EletronicFiles\Ebooks\The-%24100-Startup.pdf" />
+    <Content Include="Content\EletronicFiles\Ebooks\Zero-to-One-by-Peter-Theil.pdf" />
+    <Content Include="Content\EletronicFiles\Ebooks\How-We-Learn.pdf" />
+    <Content Include="Content\EletronicFiles\Ebooks\Start-Up-Nation.pdf" />
+    <Content Include="Content\EletronicFiles\ResearchPapers\Education Programs for Improving Intergroup Relations 2004.pdf" />
+    <Content Include="Content\EletronicFiles\ResearchPapers\Education Research in the Public Interest Social Justice, Action, And Policy 2006.pdf" />
+    <Content Include="Content\EletronicFiles\ResearchPapers\Qualitative Inquiry in Geoscience Education Research.pdf" />
+    <Content Include="Content\EletronicFiles\ResearchPapers\The deliberate dumbing down of America 1999.pdf" />
+    <Content Include="Content\EletronicFiles\Magazines\Les_Echos.pdf" />
+    <Content Include="Content\EletronicFiles\Magazines\Neue Burcher.pdf" />
+    <Content Include="Content\EletronicFiles\Magazines\The_Wall_Street_Journal_-_18_11_2019.pdf" />
+    <Content Include="Content\EletronicFiles\Articles\the-richest-man-in-babylon.pdf" />
+    <Content Include="Content\EletronicFiles\Articles\the_science_of_getting_rich.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -225,6 +240,7 @@
     <Content Include="Views\Home\ReviewsPartialView.cshtml" />
     <Content Include="Views\Home\BookLocationPartialView.cshtml" />
     <Content Include="Views\Home\ReservationReport.cshtml" />
+    <Content Include="Views\Home\GetElectronicFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

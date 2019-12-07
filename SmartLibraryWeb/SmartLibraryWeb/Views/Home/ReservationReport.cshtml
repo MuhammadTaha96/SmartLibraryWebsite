@@ -1,0 +1,74 @@
+﻿@model SmartLibraryWeb.ViewModel.ReservationViewModel
+
+@{
+    ViewBag.Title = "ReservationReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align: center;margin: 10px;">Reservation Report</h2>
+<div style="background-color:black; padding: 10px">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                Book Title
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedCopy.Book.Title)
+            </dd>
+
+            <dt>
+                Book ISBN
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedCopy.Book.ISBN_No)
+            </dd>
+
+            <dt>
+                Book in language
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedCopy.Book.Language)
+            </dd>
+
+            <dt>
+                Reservation Ends on
+            </dt>
+
+            <dd>
+              @Model.EndDateTime.ToString("MMM dd yyyy")
+            </dd>
+
+            <dt>
+                Reserved By
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedBy.FullName)
+            </dd>
+
+            <dt>
+                Contact Phone
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedBy.PhoneNumber)
+            </dd>
+
+            <dt>
+                Contact Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedBy.Email)
+            </dd>
+
+        </dl>
+    </div>
+
+    <p>You must have received a reservation email on your phone. Please issue your book before the end date otherwise your reservation will be cancled.</p>
+</div>

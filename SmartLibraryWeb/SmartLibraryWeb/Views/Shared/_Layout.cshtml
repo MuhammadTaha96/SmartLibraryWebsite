@@ -69,6 +69,10 @@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Books", "GetAllBooks", "Home")</li>
+                    <li>@Html.ActionLink("E Books", "GetElectronicFiles", new { fileTypeId = 1 }, new { @class= "eletronic" })</li>
+                    <li>@Html.ActionLink("Magazines", "GetElectronicFiles", new { fileTypeId = 2 }, new { @class = "eletronic" })</li>
+                    <li>@Html.ActionLink("Articles", "GetElectronicFiles", new { fileTypeId = 3 }, new { @class = "eletronic" })</li>
+                    <li>@Html.ActionLink("Research Papers", "GetElectronicFiles", new { fileTypeId = 4 }, new { @class = "eletronic" })</li>
                 </ul>
                 @if (user != null)
                 {
@@ -106,4 +110,11 @@
 @Html.Hidden("AddCommentUrl", Url.Action("AddComment", "Home"))
 @Html.Hidden("BookLocationPartialView", Url.Action("BookLocationPartialView", "Home"))
 </html>
+
+<script>
+    $('.navbar-nav li').click(function () {
+        $('.navbar-nav li').removeClass('active-li');
+        $(this).addClass('active-li');
+    })
+</script>
 

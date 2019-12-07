@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.ElectronicFileViewModel>
+
+@{
+    ViewBag.Title = "GetElectronicFiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@foreach (var item in Model) {
+
+           
+            @Html.ActionLink(item.FileName, "DownloadFile", new { fileName = item.FileName }, new { @class = "electronicFileDiv" })
+        
+       
+    
+}

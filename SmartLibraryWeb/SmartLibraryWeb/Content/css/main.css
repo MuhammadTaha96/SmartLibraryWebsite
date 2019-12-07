@@ -661,3 +661,23 @@ input[type="search"] {
 #BookListTable {
     color:black;
 }
+
+.active-li {
+    background-color: #3276b1;
+}
+
+.electronicFileDiv {
+    background-color: palegoldenrod;
+    margin: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    display:block;
+    }
+
+
+.electronicFileDiv:hover {
+    background-color: #428bca;
+    cursor:pointer;
+    color:white;
+}
+

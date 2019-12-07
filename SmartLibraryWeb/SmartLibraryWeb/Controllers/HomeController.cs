@@ -43,6 +43,28 @@ namespace SmartLibraryWeb.Controllers
             return View(bookList);
         }
 
+        public ActionResult GetElectronicFiles(int fileTypeId)
+        {
+            if (Session["UserModel"] == null)
+                return RedirectToAction("Login", "Account");
+
+            List<ElectronicFileViewModel> EFVM = WebApiClient.GetEletronicFiles(fileTypeId);
+            Session["ElectronicFiles"] = EFVM;
+
+            return View(EFVM);
+        }
+
+        public FileResult DownloadFile(string fileName)
+        {
+            List<ElectronicFileViewModel> EFVMlist = Session["ElectronicFiles"] as List<ElectronicFileViewModel>;
+
+            ElectronicFileViewModel EFVM = EFVMlist.Where(x => x.FileName.Equals(fileName)).SingleOrDefault();
+
+            return File(EFVM.Path, "pdf", EFVM.FileName + ".pdf");
+        }
+
+        
+
         [HttpPost]
         public ActionResult GetBookJsonResponse()
         {

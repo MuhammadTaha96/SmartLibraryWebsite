@@ -297,5 +297,31 @@ namespace SmartLibraryWeb.Operations
             copiesVM = Parser.CopiesParser(copies);
             return copiesVM;
         }
+
+        public static List<ElectronicFileViewModel> GetEletronicFiles(int fileType)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetEletronicFiles";
+            string html = string.Empty;
+            List<ElectronicFile> efiles = null;
+            List<ElectronicFileViewModel> efilesVM = null;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?fileType=" + fileType;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                efiles = JsonConvert.DeserializeObject<List<ElectronicFile>>(html);
+            }
+
+            efilesVM = Parser.ElectronicFileParser(efiles);
+            return efilesVM;
+        }
     }
 }

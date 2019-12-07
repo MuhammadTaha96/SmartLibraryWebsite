@@ -176,6 +176,28 @@ namespace SmartLibraryWeb.Operations
 
         }
 
+        public static List<ElectronicFileViewModel> ElectronicFileParser(List<ElectronicFile> ElectronicFiles)
+        {
+            List<ElectronicFileViewModel> eFileList = new List<ElectronicFileViewModel>();
+            foreach (var efile in ElectronicFiles)
+            {
+                ElectronicFileViewModel efileVM = new ElectronicFileViewModel();
+                efileVM.ElectronicFileId = efile.ElectronicFileId;
+                efileVM.Description = efile.Description;
+                efileVM.FileName = efile.FileName;
+                efileVM.Path = efile.Path;
+
+                //efileVM.FileType = new ElectronicFileTypeViewModel();
+                //efileVM.FileType.ElectronicFileTypeId = efile.FileType.ElectronicFileTypeId;
+                //efileVM.FileType.Name = efile.FileType.Name;
+
+                eFileList.Add(efileVM);
+            }
+
+            return eFileList;
+
+        }
+
         public static List<CommentViewModel> CommentParser(List<Comment> comments)
         {
             List<CommentViewModel> commentList = new List<CommentViewModel>();
