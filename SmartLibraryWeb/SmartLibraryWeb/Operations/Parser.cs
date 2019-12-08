@@ -257,6 +257,18 @@ namespace SmartLibraryWeb.Operations
 
         }
 
+        public static List<ReservationViewModel> ReservationListParser(List<Reservation> reservationList)
+        {
+            List<ReservationViewModel> resVMList = new List<ReservationViewModel>();
+            foreach (var res in reservationList)
+            {
+                resVMList.Add(Parser.ReservationParser(res));
+            }
+
+            return resVMList;
+        }
+        
+
         public static List<ReviewViewModel> ReviewParser(List<Review> reviews)
         {
             List<ReviewViewModel> reviewList = new List<ReviewViewModel>();

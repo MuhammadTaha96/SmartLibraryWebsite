@@ -222,6 +222,30 @@ namespace SmartLibraryWeb.Operations
             return Parser.CommentParser(comments);
         }
 
+        public static List<ReservationViewModel> GetActiveReservationsByUser(int userLoginId)
+        {
+            string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();
+            string controller = "values";
+            string action = "GetActiveReservationsByUser";
+            bool success = false;
+            string html = string.Empty;
+
+            string url = urlWebConfig + "/" + controller + "/" + action + "?userLoginId=" + userLoginId;
+            List<Reservation> reservationList = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+                reservationList = JsonConvert.DeserializeObject<List<Reservation>>(html);
+            }
+
+            return Parser.ReservationListParser(reservationList);
+        }
+
         public static List<ReviewViewModel> GetReviews(string bookId)
         {
             string urlWebConfig = ConfigurationManager.AppSettings["ApiURL"].ToString();

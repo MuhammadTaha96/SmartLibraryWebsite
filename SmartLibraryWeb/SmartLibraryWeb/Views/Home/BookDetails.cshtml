@@ -12,8 +12,8 @@
         Authors += author.Name + ",";
     }
 
-    Authors = Authors.TrimEnd(',');    
-    
+    Authors = Authors.TrimEnd(',');
+
 }
 
 @Html.HiddenFor(x => x.BookId)
@@ -34,7 +34,7 @@
 <article>
     <div class="single-book-box">
         <div class="post-thumbnail">
-            <img alt="Book"  src="@Model.ImagePath" />
+            <img alt="Book" src="@Model.ImagePath" />
         </div>
         <div class="post-detail">
             @*<div class="books-social-sharing">
@@ -99,7 +99,8 @@
                 <p>@Model.Description</p>
             </div>
             <footer class="entry-footer">
-                @Html.ActionLink("Reserve", "Reserve", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
+                @*<a onclick="reserveACopy(@Model.BookId)" id="btnReserve" class="btn btn-dark-gray">Reserve</a>*@
+                   @Html.ActionLink("Reserve", "ResCopy", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
                 <span id="resMessage" class="@resMsgClass">@reservationMessage</span>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderComments(@Model.BookId)">Comments</a>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderReviews(@Model.BookId)">Reviews</a>
@@ -147,4 +148,24 @@
                 $('#btnReserve').text('No copies available right now');
         }
     })
+
+    function reserveACopy(bookId) {
+        debugger;
+        $("#loading").show();
+
+        $.ajax({
+            url: "ReserveACopy",
+            type: 'GET',
+            data: { bookId: bookId },
+            closeBtn: 'true',
+            success: function (data) {
+                $("#loading").hide();
+            },
+            error: function (req, status, error) {
+            },
+            complete: function () {
+
+            },
+        });
+    }
 </script>

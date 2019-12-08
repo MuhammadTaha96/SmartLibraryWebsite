@@ -1,74 +1,42 @@
-﻿@model SmartLibraryWeb.ViewModel.ReservationViewModel
+﻿@model IEnumerable<SmartLibraryWeb.ViewModel.ReservationViewModel>
 
 @{
     ViewBag.Title = "ReservationReport";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align: center;margin: 10px;">Reservation Report</h2>
-<div style="background-color:black; padding: 10px">
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
+<div style="background-color: black;margin: 10px;padding: 24px;border-radius: 25px;" >
+    <h2>Reservation Report</h2>
 
-            <dt>
+
+    <table class="table">
+        <tr>
+            <th>
                 Book Title
-            </dt>
+            </th>
+            <th>
+                Reservation Date
+            </th>
+            <th>
+                Reservation End Date
+            </th>
+        </tr>
 
-            <dd>
-                @Html.DisplayFor(model => model.ReservedCopy.Book.Title)
-            </dd>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservedCopy.Book.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
 
-            <dt>
-                Book ISBN
-            </dt>
+            </tr>
+        }
 
-            <dd>
-                @Html.DisplayFor(model => model.ReservedCopy.Book.ISBN_No)
-            </dd>
-
-            <dt>
-                Book in language
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReservedCopy.Book.Language)
-            </dd>
-
-            <dt>
-                Reservation Ends on
-            </dt>
-
-            <dd>
-              @Model.EndDateTime.ToString("MMM dd yyyy")
-            </dd>
-
-            <dt>
-                Reserved By
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReservedBy.FullName)
-            </dd>
-
-            <dt>
-                Contact Phone
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReservedBy.PhoneNumber)
-            </dd>
-
-            <dt>
-                Contact Email
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReservedBy.Email)
-            </dd>
-
-        </dl>
-    </div>
-
-    <p>You must have received a reservation sms on your phone. Please issue your book before the end date otherwise your reservation will be cancled.</p>
+    </table>
 </div>

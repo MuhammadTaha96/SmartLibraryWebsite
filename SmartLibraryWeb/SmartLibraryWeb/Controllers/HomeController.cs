@@ -92,7 +92,8 @@ namespace SmartLibraryWeb.Controllers
             return View(bookVM);
         }
 
-        public ActionResult Reserve(int bookId)
+        [HttpGet]
+        public ActionResult ResCopy(int bookId)
         {
             UserLoginViewModel userLogin = Session["UserModel"] as UserLoginViewModel;
             List<BookViewModel> bookList = Session["BookList"] as List<BookViewModel>;
@@ -100,14 +101,14 @@ namespace SmartLibraryWeb.Controllers
             BookViewModel book = WebApiClient.GetAllBooks().Where(x => x.BookId == bookId).SingleOrDefault();
             //ViewData["resMessage"] = reserved ? "Your book has been reserved" : "";
             //ViewData["reserved"] = reserved;
-            Session["ReservationViewModel"] = reservationVM;
+            //Session["ReservationViewModel"] = reservationVM;
             return RedirectToActionPermanent("ReservationReport");
         }
 
         public ActionResult ReservationReport()
         {
             UserLoginViewModel userLogin = Session["UserModel"] as UserLoginViewModel;
-            ReservationViewModel reservation = Session["ReservationViewModel"] as ReservationViewModel;
+            List<ReservationViewModel> reservation = WebApiClient.GetActiveReservationsByUser(userLogin.UserLoginId);
 
             return View(reservation);
         }
