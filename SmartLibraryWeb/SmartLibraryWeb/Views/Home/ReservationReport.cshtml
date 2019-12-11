@@ -20,6 +20,9 @@
             <th>
                 Reservation End Date
             </th>
+            <th>
+               Status
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -34,6 +37,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDateTime)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+
 
             </tr>
         }

@@ -253,6 +253,10 @@ namespace SmartLibraryWeb.Operations
             resVM.ReservedCopy.Book.ISBN_No = reservation.ReservedCopy.Book.ISBN_No;
             resVM.ReservedCopy.Book.Language = reservation.ReservedCopy.Book.Language;
 
+            resVM.Status = new ReservationStatusViewModel();
+            resVM.Status.ReservationStatusId = reservation.Status.ReservationStatusId;
+            resVM.Status.Name = reservation.Status.Name;
+
             return resVM;
 
         }

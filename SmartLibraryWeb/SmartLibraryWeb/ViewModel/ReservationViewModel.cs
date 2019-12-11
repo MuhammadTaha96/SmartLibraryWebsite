@@ -14,5 +14,6 @@ namespace SmartLibraryWeb.ViewModel
 
         public CopyViewModel ReservedCopy { get; set; }
         public UserLoginViewModel ReservedBy { get; set; }
+        public ReservationStatusViewModel Status { get; set; }
     }
 }

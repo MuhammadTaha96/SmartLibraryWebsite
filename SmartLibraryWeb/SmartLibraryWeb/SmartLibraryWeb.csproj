@@ -136,6 +136,7 @@
     <Compile Include="ViewModel\ElectronicFileViewModel.cs" />
     <Compile Include="ViewModel\LocationViewModel.cs" />
     <Compile Include="ViewModel\PublisherViewModel.cs" />
+    <Compile Include="ViewModel\ReservationStatusViewModel.cs" />
     <Compile Include="ViewModel\ReservationViewModel.cs" />
     <Compile Include="ViewModel\ReviewViewModel.cs" />
     <Compile Include="ViewModel\StatusViewModel.cs" />
