@@ -681,3 +681,6 @@ input[type="search"] {
     color:white;
 }
 
+.field-validation-error {
+    color: red;
+}
