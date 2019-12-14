@@ -100,7 +100,7 @@
             </div>
             <footer class="entry-footer">
                 @*<a onclick="reserveACopy(@Model.BookId)" id="btnReserve" class="btn btn-dark-gray">Reserve</a>*@
-                   @Html.ActionLink("Reserve", "ResCopy", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve" })
+                   @Html.ActionLink("Reserve", "ReserveACopy", new { bookId = @Model.BookId }, new { @class = "btn btn-dark-gray", id = "btnReserve", onclick = "SaveBookSession()" })
                 <span id="resMessage" class="@resMsgClass">@reservationMessage</span>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderComments(@Model.BookId)">Comments</a>
                 <a class="btn btn-dark-gray right" id="btnComments" data-toggle="modal" data-target="#myModal" onclick="CallRenderReviews(@Model.BookId)">Reviews</a>
@@ -167,5 +167,13 @@
 
             },
         });
+    }
+
+    function SaveBookSession()
+    {
+        debugger;
+    @{
+        Session["ReservedBookSession"] = Model.BookId; 
+    }
     }
 </script>

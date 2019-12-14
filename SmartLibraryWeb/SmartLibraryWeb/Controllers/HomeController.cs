@@ -39,7 +39,7 @@ namespace SmartLibraryWeb.Controllers
                 return RedirectToAction("Login", "Account");
 
             List<BookViewModel> bookList = new List<BookViewModel>();
-            
+
             return View(bookList);
         }
 
@@ -63,7 +63,7 @@ namespace SmartLibraryWeb.Controllers
             return File(EFVM.Path, "pdf", EFVM.FileName + ".pdf");
         }
 
-        
+
 
         [HttpPost]
         public ActionResult GetBookJsonResponse()
@@ -77,7 +77,7 @@ namespace SmartLibraryWeb.Controllers
 
             string json = JsonConvert.SerializeObject(bookList);
 
-            
+
             return Content(json);
         }
 
@@ -93,7 +93,7 @@ namespace SmartLibraryWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult ResCopy(int bookId)
+        public ActionResult ReserveACopy(int bookId)
         {
             UserLoginViewModel userLogin = Session["UserModel"] as UserLoginViewModel;
             List<BookViewModel> bookList = Session["BookList"] as List<BookViewModel>;
@@ -102,15 +102,38 @@ namespace SmartLibraryWeb.Controllers
             //ViewData["resMessage"] = reserved ? "Your book has been reserved" : "";
             //ViewData["reserved"] = reserved;
             //Session["ReservationViewModel"] = reservationVM;
-            return RedirectToActionPermanent("ReservationReport");
+
+            return RedirectToAction("Report");
         }
 
+        [HttpGet]
+        public ActionResult ReserveACopy2(int bookId)
+        {
+            UserLoginViewModel userLogin = Session["UserModel"] as UserLoginViewModel;
+            List<BookViewModel> bookList = Session["BookList"] as List<BookViewModel>;
+            ReservationViewModel reservationVM = WebApiClient.ReserveACopy(bookId, userLogin.UserLoginId);
+            BookViewModel book = WebApiClient.GetAllBooks().Where(x => x.BookId == bookId).SingleOrDefault();
+            //ViewData["resMessage"] = reserved ? "Your book has been reserved" : "";
+            //ViewData["reserved"] = reserved;
+            //Session["ReservationViewModel"] = reservationVM;
+
+            return RedirectToAction("Report");
+        }
+
+        //This method just redirects the ReservedACopy2 method to reserve the copy
         public ActionResult ReservationReport()
+        {
+            int bookId = int.Parse(Session["ReservedBookSession"].ToString());
+            return RedirectToAction("ReserveACopy2", new { bookId = bookId });
+        }
+
+        //Report is called either directly by student/faculty or it is opened after each reservation
+        public ActionResult Report()
         {
             UserLoginViewModel userLogin = Session["UserModel"] as UserLoginViewModel;
             List<ReservationViewModel> reservation = WebApiClient.GetActiveReservationsByUser(userLogin.UserLoginId);
 
-            return View(reservation);
+            return View("ReservationReport", reservation);
         }
 
         [HttpPost]
