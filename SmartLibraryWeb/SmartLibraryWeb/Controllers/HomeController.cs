@@ -49,6 +49,7 @@ namespace SmartLibraryWeb.Controllers
                 return RedirectToAction("Login", "Account");
 
             List<ElectronicFileViewModel> EFVM = WebApiClient.GetEletronicFiles(fileTypeId);
+            ViewData["EHeading"] = EFVM.Select(x => x.FileType.Description).FirstOrDefault();
             Session["ElectronicFiles"] = EFVM;
 
             return View(EFVM);

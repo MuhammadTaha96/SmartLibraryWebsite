@@ -187,9 +187,10 @@ namespace SmartLibraryWeb.Operations
                 efileVM.FileName = efile.FileName;
                 efileVM.Path = efile.Path;
 
-                //efileVM.FileType = new ElectronicFileTypeViewModel();
-                //efileVM.FileType.ElectronicFileTypeId = efile.FileType.ElectronicFileTypeId;
-                //efileVM.FileType.Name = efile.FileType.Name;
+                efileVM.FileType = new ElectronicFileTypeViewModel();
+                efileVM.FileType.ElectronicFileTypeId = efile.FileType.ElectronicFileTypeId;
+                efileVM.FileType.Name = efile.FileType.Name;
+                efileVM.FileType.Description = efile.FileType.Description;
 
                 eFileList.Add(efileVM);
             }

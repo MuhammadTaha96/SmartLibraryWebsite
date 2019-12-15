@@ -684,3 +684,11 @@ input[type="search"] {
 .field-validation-error {
     color: red;
 }
+.EfileDiv {
+    background-color: black;
+    padding: 16px;
+    border-radius: 15px
+}
+#EHeading{
+   text-align: center;
+}

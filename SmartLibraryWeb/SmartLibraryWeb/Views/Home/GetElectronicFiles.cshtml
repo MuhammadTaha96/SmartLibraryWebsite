@@ -5,13 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-@foreach (var item in Model) {
-
-           
-            @Html.ActionLink(item.FileName, "DownloadFile", new { fileName = item.FileName }, new { @class = "electronicFileDiv" })
-        
-       
-    
-}
+<div class="EfileDiv">
+    <h2 id="EHeading">@ViewData["EHeading"]</h2>
+    @foreach (var item in Model)
+    {
+   @Html.ActionLink(item.FileName, "DownloadFile", new { fileName = item.FileName }, new { @class = "electronicFileDiv" })
+    }
+</div>
